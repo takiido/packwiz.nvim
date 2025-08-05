@@ -1,3 +1,3 @@
 vim.api.nvim_create_user_command("PackwizWin", function()
-    require("ui").create_window()
+    require("packwiz.ui").create_window()
 end, {})
