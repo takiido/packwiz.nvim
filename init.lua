@@ -1,3 +1,5 @@
 vim.api.nvim_create_user_command("PackwizWin", function()
-    require("packwiz.ui").create_window()
+    local content = require("packwiz.plugins").get_plugins(false)
+    local active = require("packwiz.plugins").get_plugins(true)
+    require("packwiz.ui").create_window(content, active)
 end, {})

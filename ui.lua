@@ -1,13 +1,16 @@
 local M = {}
 
-function M.create_window()
+function M.create_window(content, active)
     local buf = vim.api.nvim_create_buf(false, true)
 
-    local content = vim.pack.get()
+    local totalPlugins = #content
+    local totalActivePlugins = #active
 
-    local lines = vim.split(vim.inspect(content), "\n", { trimempty = true })
+    table.insert(content, 1, "Loaded plugins:")
+    table.insert(content, 2, string.format("   Total plugins: %s (%s active)", totalPlugins, totalActivePlugins))
+    table.insert(content, 3, "")
 
-    vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, content)
 
     local width = vim.o.columns - 8
     local height = vim.o.lines - 12
