@@ -3,9 +3,11 @@ local M = {}
 function M.create_window()
     local buf = vim.api.nvim_create_buf(false, true)
 
-    vim.api.nvim_buf_set_lines(buf, 0, -1, false, {
-        "Packwiz window",
-    })
+    local content = vim.pack.get()
+
+    local lines = vim.split(vim.inspect(content), "\n", { trimempty = true })
+
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
 
     local width = vim.o.columns - 8
     local height = vim.o.lines - 12
