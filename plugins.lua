@@ -70,6 +70,8 @@ function M.toggle_plugin(path, plugin_src)
 
     if not modified then
         return false, "No matching src line found for: " .. plugin_src
+    else
+        _G.needs_restart = true
     end
 
     local ok, write_err = write_lines(path, lines)
