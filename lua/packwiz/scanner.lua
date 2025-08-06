@@ -8,7 +8,8 @@ end
 
 local function find_pack_file_lua(path)
     path = vim.fs.normalize(path)
-    if not vim.uv.fs_stat(path, "directory") then return end
+    local stat = vim.uv.fs_stat(path)
+    if not (stat and stat.type == "directory") then return end
 
     for name, type in vim.fs.dir(path) do
         local full_path = path .. "/" .. name
