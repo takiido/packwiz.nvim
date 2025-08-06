@@ -1,6 +1,6 @@
 local M = {}
 
-M.use_rg = true
-M.use_fzf = true
+M.use_rg = false
+M.use_fzf = false
 
 return M
